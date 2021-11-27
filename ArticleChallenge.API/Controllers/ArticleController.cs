@@ -33,9 +33,6 @@ namespace ArticleChallenge.API.Controllers
             {
                 var articleList = await _articleService.GetAllArticles();
 
-                if (articleList.Count == 0)
-                    return BadRequest("Nenhuma artigo foi encontrada");
-
                 return Ok(articleList);
             }
             catch (Exception ex)
