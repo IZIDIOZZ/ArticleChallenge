@@ -44,7 +44,7 @@ namespace ArticleChallenge.API
 
             services.AddDbContext<ArticleChallengeContext>(option =>
             {
-                option.UseSqlServer(Configuration.GetConnectionString("ConnectionSql"))
+                option.UseSqlServer(Configuration.GetConnectionString("ConnectionSql"), x => x.MigrationsAssembly("ArticleChallenge.Data"))
                 .LogTo(Console.WriteLine,LogLevel.Information);
             });
 
