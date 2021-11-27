@@ -6,17 +6,16 @@ using System.Threading.Tasks;
 
 namespace ArticleChallenge.Domain.Entities
 {
-    public class ArticleLike
+    public class LikeArticle
     {
-
-        public Guid ArticleLikeId { get; private set; }
+        public Guid LikeArticleId { get; private set; }
         public Guid ArticleId { get; private set; }
         public Article Article { get; private set; }
 
-        public ArticleLike(Guid articleLikeId)
+        public LikeArticle(Guid articleId)
         {
-            ArticleLikeId = Guid.NewGuid();
-            ArticleId = articleLikeId;
+            ArticleId = articleId;
+            LikeArticleId = Guid.NewGuid();
         }
     }
 }

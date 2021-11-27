@@ -14,7 +14,7 @@ namespace ArticleChallenge.Domain.Entities
         public string Author { get; private set; }
         public string Title { get; private set; }
         public string Content { get; private set; }
-        public List<ArticleLike> Likes { get; private set; }
+        public ICollection<LikeArticle> Likes { get; private set; }
 
         public Article(string author, string title, string content)
         {
@@ -22,12 +22,7 @@ namespace ArticleChallenge.Domain.Entities
             Author = author;
             Title = title;
             Content = content;
-            Likes = new List<ArticleLike>();
-        }
-
-        public void AddLike(ArticleLike articleLike)
-        {
-            Likes.Add(articleLike);
+            Likes = new List<LikeArticle>();
         }
     }
 }
