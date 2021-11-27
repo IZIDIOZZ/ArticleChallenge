@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31829.152
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{F29108A1-1C76-4355-8B65-38BAEBBF9069}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{4C2147C8-29C0-4D6E-99A6-DBC3EF0E549B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{382B3C5F-1151-433F-8BD9-9AE239E833C3}"
@@ -19,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArticleChallenge.Applicatio
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{AE52F1CD-DAB5-432F-A22B-42F235C39966}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArticleChallenge.API", "ArticleChallenge.API\ArticleChallenge.API.csproj", "{C3894E54-E521-4A0F-8A9A-9A8D335A570E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArticleChallenge.API", "ArticleChallenge.API\ArticleChallenge.API.csproj", "{C3894E54-E521-4A0F-8A9A-9A8D335A570E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
