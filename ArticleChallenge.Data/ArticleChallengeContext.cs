@@ -9,11 +9,11 @@ using ArticleChallenge.Domain.Entities;
 
 namespace ArticleChallenge.Data
 {
-    class ArticleChallengeContext: DbContext
+    public class ArticleChallengeContext: DbContext
     {
 
-        DbSet<Article> Articles;
-        DbSet<ArticleLike> ArticleLikes;
+        public DbSet<Article> Articles { get; set; }
+        public DbSet<LikeArticle> ArticleLikes { get; set; }
 
         public ArticleChallengeContext(DbContextOptions<ArticleChallengeContext> options) : base(options) 
         { 
@@ -21,6 +21,7 @@ namespace ArticleChallenge.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetAssembly(typeof(ArticleChallengeContext)));
+            base.OnModelCreating(modelBuilder);
         }
 
     }

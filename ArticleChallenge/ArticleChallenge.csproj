@@ -12,4 +12,9 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ArticleChallenge.Application\ArticleChallenge.Application.csproj" />
+    <ProjectReference Include="..\ArticleChallenge.Data\ArticleChallenge.Data.csproj" />
+  </ItemGroup>
+
 </Project>
