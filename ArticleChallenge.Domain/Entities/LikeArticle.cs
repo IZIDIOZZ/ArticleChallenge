@@ -11,11 +11,13 @@ namespace ArticleChallenge.Domain.Entities
         public Guid LikeArticleId { get; private set; }
         public Guid ArticleId { get; private set; }
         public Article Article { get; private set; }
+        public Guid UserIdLiked { get; private set; }
 
-        public LikeArticle(Guid articleId)
+        public LikeArticle(Guid articleId, Guid userIdLiked)
         {
             ArticleId = articleId;
             LikeArticleId = Guid.NewGuid();
+            UserIdLiked = userIdLiked;
         }
     }
 }

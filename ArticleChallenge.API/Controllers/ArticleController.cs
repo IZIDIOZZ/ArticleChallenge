@@ -76,13 +76,15 @@ namespace ArticleChallenge.API.Controllers
         }
 
         [HttpPost("like")]
-        public async Task<IActionResult> AddArticleLike(Guid articleId)
+        public async Task<IActionResult> AddArticleLike([FromBody] ArticleIdViewModel ArticleIdViewModel)
         {
             try
             {
+                var articleId = ArticleIdViewModel.articleID;
+
                 if (articleId == Guid.Empty) return BadRequest("O Id de um Artigo é necessário para adicionar o Like");
 
-                var article = await _articleService.AddArticleLike(articleId);
+                var article = await _articleService.AddArticleLike(articleId, ArticleIdViewModel.userIdLiked);
 
                 return Ok(article);
             }
@@ -91,5 +93,42 @@ namespace ArticleChallenge.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpDelete("like/remove/{articleId}/{userIdLiked}")]
+        public async Task<IActionResult> RemoveArticleLike(Guid articleId, Guid userIdLiked)
+        {
+            try
+            {
+                if (articleId == Guid.Empty) return BadRequest("O Id de um Artigo é necessário para adicionar o Like");
+                if (userIdLiked == Guid.Empty) return BadRequest("Id de usuário não foi informado.");
+
+                var article = await _articleService.RemoveArticleLike(articleId, userIdLiked);
+
+                return Ok(article);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("like/alreadyLiked/{articleId}/{userIdLiked}")]
+        public async Task<IActionResult> UserAlreadyLiked(Guid articleId, Guid userIdLiked)
+        {
+            try
+            {
+                if (articleId == Guid.Empty) return BadRequest("O Id de um Artigo é necessário.");
+                if (userIdLiked == Guid.Empty) return BadRequest("Id de usuário não foi informado.");
+
+                var userAlreadyLiked = await _articleService.UserAlreadyLikedArticle(articleId, userIdLiked);
+
+                return Ok(userAlreadyLiked);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        
     }
 }

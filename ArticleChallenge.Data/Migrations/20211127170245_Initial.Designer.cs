@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ArticleChallenge.Data.Migrations
 {
     [DbContext(typeof(ArticleChallengeContext))]
-    [Migration("20211126151556_Initial")]
+    [Migration("20211127170245_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,6 +33,9 @@ namespace ArticleChallenge.Data.Migrations
                     b.Property<string>("Content")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("PublishDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
@@ -50,11 +53,14 @@ namespace ArticleChallenge.Data.Migrations
                     b.Property<Guid>("ArticleId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("UserIdLiked")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("LikeArticleId");
 
                     b.HasIndex("ArticleId");
 
-                    b.ToTable("ArticleLikes");
+                    b.ToTable("LikeArticle");
                 });
 
             modelBuilder.Entity("ArticleChallenge.Domain.Entities.LikeArticle", b =>

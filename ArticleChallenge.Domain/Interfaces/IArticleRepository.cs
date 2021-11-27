@@ -13,5 +13,7 @@ namespace ArticleChallenge.Domain.Interfaces
        Task<List<Article>> GetAllArticles();
        Task AddArticle(Article article);
        Task AddLikeArticle(LikeArticle articleLike);
+       Task RemoveLikeArticle(LikeArticle articleLike);
+       Task<LikeArticle> GetLikeArticleByUser(Guid articleId, Guid userIdLiked);
     }
 }

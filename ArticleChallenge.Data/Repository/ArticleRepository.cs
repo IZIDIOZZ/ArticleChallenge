@@ -31,6 +31,12 @@ namespace ArticleChallenge.Data.Repository
                  .Include(x => x.Likes)
                  .ToListAsync();
         }
+        public async Task<LikeArticle> GetLikeArticleByUser(Guid articleId, Guid userIdLiked)
+        {
+            return await _articleContext.LikeArticle
+                  .Where(x => x.UserIdLiked == userIdLiked && x.Article.ArticleId == articleId)
+                  .FirstOrDefaultAsync();
+        }
 
         public async Task AddArticle(Article article)
         {
@@ -40,7 +46,13 @@ namespace ArticleChallenge.Data.Repository
 
         public async Task AddLikeArticle(LikeArticle articleLike)
         {
-            await _articleContext.ArticleLikes.AddAsync(articleLike);
+            await _articleContext.LikeArticle.AddAsync(articleLike);
+            await _articleContext.SaveChangesAsync();
+        }
+        
+        public async Task RemoveLikeArticle(LikeArticle articleLike)
+        {
+             _articleContext.LikeArticle.Remove(articleLike);
             await _articleContext.SaveChangesAsync();
         }
     }

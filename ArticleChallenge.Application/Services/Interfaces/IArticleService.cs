@@ -12,6 +12,8 @@ namespace ArticleChallenge.Domain.Interfaces
         Task<ArticleViewModel> GetArticle(Guid articleId);
         Task<List<ArticleViewModel>> GetAllArticles();
         Task<ArticleViewModel> AddArticle(ArticleViewModel article);
-        Task<ArticleViewModel> AddArticleLike(Guid articleId);
+        Task<ArticleViewModel> AddArticleLike(Guid articleId, Guid userLikedId);
+        Task<ArticleViewModel> RemoveArticleLike(Guid articleId, Guid userLikedId);
+        Task<bool> UserAlreadyLikedArticle(Guid articleId, Guid userLikedId);
     }
 }

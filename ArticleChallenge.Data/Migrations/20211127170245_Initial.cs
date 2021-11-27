@@ -14,7 +14,8 @@ namespace ArticleChallenge.Data.Migrations
                     ArticleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Author = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Content = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Content = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PublishDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -22,17 +23,18 @@ namespace ArticleChallenge.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ArticleLikes",
+                name: "LikeArticle",
                 columns: table => new
                 {
                     LikeArticleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ArticleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    ArticleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserIdLiked = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ArticleLikes", x => x.LikeArticleId);
+                    table.PrimaryKey("PK_LikeArticle", x => x.LikeArticleId);
                     table.ForeignKey(
-                        name: "FK_ArticleLikes_Articles_ArticleId",
+                        name: "FK_LikeArticle_Articles_ArticleId",
                         column: x => x.ArticleId,
                         principalTable: "Articles",
                         principalColumn: "ArticleId",
@@ -40,15 +42,15 @@ namespace ArticleChallenge.Data.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_ArticleLikes_ArticleId",
-                table: "ArticleLikes",
+                name: "IX_LikeArticle_ArticleId",
+                table: "LikeArticle",
                 column: "ArticleId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ArticleLikes");
+                name: "LikeArticle");
 
             migrationBuilder.DropTable(
                 name: "Articles");

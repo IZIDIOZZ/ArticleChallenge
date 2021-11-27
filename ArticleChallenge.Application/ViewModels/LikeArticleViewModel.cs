@@ -11,6 +11,7 @@ namespace ArticleChallenge.Application.ViewModels
     {
         public Guid LikeArticleId { get; set; }
         public Guid ArticleId { get; set; }
+        public Guid UserIdLiked { get; set; }
         public ArticleViewModel Article { get; set; }
     }
 }

@@ -31,6 +31,9 @@ namespace ArticleChallenge.Data.Migrations
                     b.Property<string>("Content")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("PublishDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
@@ -48,11 +51,14 @@ namespace ArticleChallenge.Data.Migrations
                     b.Property<Guid>("ArticleId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("UserIdLiked")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("LikeArticleId");
 
                     b.HasIndex("ArticleId");
 
-                    b.ToTable("ArticleLikes");
+                    b.ToTable("LikeArticle");
                 });
 
             modelBuilder.Entity("ArticleChallenge.Domain.Entities.LikeArticle", b =>

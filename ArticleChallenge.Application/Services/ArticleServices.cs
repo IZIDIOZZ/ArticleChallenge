@@ -30,15 +30,37 @@ namespace ArticleChallenge.Application.Services
             return ArticleToArticleViewModel(article);
         }
 
-        public async Task<ArticleViewModel> AddArticleLike(Guid articleId)
+        public async Task<ArticleViewModel> AddArticleLike(Guid articleId, Guid userLikedId)
         {
             var article = await _articleRepository.GetArticle(articleId);
-            if (article is null) throw new Exception($"Nenhum Artigo com o Id {articleId} foi encontrado");
+           
+            if (article is null) throw new Exception($"Nenhum Artigo com o Id {articleId} foi encontrado.");
 
-            var LikeArticle = new LikeArticle(articleId);
-            article.Likes.Add(LikeArticle);
+            if (article.UserAlreadLiked(userLikedId)) throw new Exception($"Usuario informado ja deu like neste artigo");
+
+            var LikeArticle = new LikeArticle(articleId, userLikedId);
+
+            article.AddLikeArticle(LikeArticle);
 
             await _articleRepository.AddLikeArticle(LikeArticle);
+
+            return ArticleToArticleViewModel(article);
+        }
+
+        public async Task<ArticleViewModel> RemoveArticleLike(Guid articleId, Guid userLikedId)
+        {
+            var article = await _articleRepository.GetArticle(articleId);
+
+            if (article is null) throw new Exception($"Nenhum Artigo com o Id {articleId} foi encontrado.");
+
+            var LikeArticle = article.GetUserLiked(userLikedId);
+           
+            if (LikeArticle is null) throw new Exception($"Usuário informado ainda não deu like neste artigo.");
+
+            article.Likes.Remove(LikeArticle);
+
+            await _articleRepository.RemoveLikeArticle(LikeArticle);
+
             return ArticleToArticleViewModel(article);
         }
 
@@ -77,5 +99,11 @@ namespace ArticleChallenge.Application.Services
             return articleViewModelList;
         }
 
+        public async Task<bool> UserAlreadyLikedArticle(Guid articleId,Guid userLikedId)
+        {
+            var likeArticle = await _articleRepository.GetLikeArticleByUser(articleId, userLikedId);
+
+                return likeArticle != null;
+        }
     }
 }

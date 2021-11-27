@@ -13,7 +13,7 @@ namespace ArticleChallenge.Data
     {
 
         public DbSet<Article> Articles { get; set; }
-        public DbSet<LikeArticle> ArticleLikes { get; set; }
+        public DbSet<LikeArticle> LikeArticle { get; set; }
 
         public ArticleChallengeContext(DbContextOptions<ArticleChallengeContext> options) : base(options) 
         { 

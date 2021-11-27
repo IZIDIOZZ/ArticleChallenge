@@ -13,6 +13,7 @@ namespace ArticleChallenge.Application.ViewModels
         public string Author { get; set; }
         public string Title { get; set; }
         public string Content { get;  set; }
+        public DateTime PublishDate { get; set; } = DateTime.Now;
         public List<LikeArticleViewModel> Likes { get; set; }
         public int LikesCount { get; set; }
     }
