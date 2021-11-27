@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl = "https://localhost:44388";
+const baseUrl = "https://articlechallenge.azurewebsites.net";
 
 export const getAllArticles = () => {
        return axios.get(baseUrl+'/api/Article/all')
