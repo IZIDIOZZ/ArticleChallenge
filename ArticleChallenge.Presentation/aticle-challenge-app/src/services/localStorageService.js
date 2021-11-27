@@ -3,7 +3,7 @@ const keyLocalStorage = "LikedArticles";
 const keyLocalUserID = "UserId";
 
 export const storeUserLike = (ArticleLike) =>{
-    // atob()
+    
     const {likeArticleId} = ArticleLike
 
     const articlesLiked = JSON.parse(localStorage.getItem(keyLocalStorage)) || []
@@ -12,13 +12,9 @@ export const storeUserLike = (ArticleLike) =>{
         articlesLiked = articlesLiked.filter(x=>x.likeArticleId !== likeArticleId)
     }
     else articlesLiked.push(ArticleLike)
-    console.log(articlesLiked)
-    
-    // localStorage.setItem(keyLocalStorage,JSON.stringify(articlesLiked))
 }
 
 export const removeStoredUserLike = (likeArticleId) =>{
-    // atob()
     localStorage.removeItem(likeArticleId);
 }
 

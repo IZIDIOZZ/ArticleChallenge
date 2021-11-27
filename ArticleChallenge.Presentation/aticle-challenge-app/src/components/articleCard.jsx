@@ -13,16 +13,12 @@ const ArticleCard = ({ article, onLike, userId }) => {
         <h5 className="card-title">
           <strong>Author:</strong> {author}
         </h5>
-        <p className="card-text">{content}</p>
+        <p className="card-text">{`${content.toString().slice(0, 200)}...`}</p>
         <div className="d-flex align-items-center mb-2">
-          <Like
-            likesCount={likesCount}
-            isLiked={article.likes.some((x) => x.userIdLiked == userId)}
-            onLike={() => onLike(articleId)}
-          />
+          <i className="fa fa-heart fa-2x pl-0 pr-2"></i>
           {(likesCount === 0 && (
             <p className="h5 m-0">Este artigo não tem Likes</p>
-          )) || <p className="h5 m-0">{likesCount}</p>}
+          )) || <p className="h5 m-0">{likesCount} Likes</p>}
         </div>
         <NavLink to={`articles/${articleId}`} className="btn btn-primary">
           Go to Article
