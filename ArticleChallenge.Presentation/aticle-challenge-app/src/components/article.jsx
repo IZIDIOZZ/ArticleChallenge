@@ -1,6 +1,6 @@
 import React from "react";
 import { AddLikeArticle, getArticle } from "../services/articlesService";
-import { getUserId, storeUserLike } from "../services/localStorageService";
+import { getUserId } from "../services/localStorageService";
 import Like from "./common/like";
 import NavLink from "react-router-dom/NavLink";
 import {
@@ -11,9 +11,6 @@ import {
 class Article extends React.Component {
   state = { article: [], isLiked: false };
 
-  constructor() {
-    super();
-  }
   async componentDidMount() {
     const { id } = this.props.match.params;
     if (id == null) this.props.history.push("/not-found");
@@ -26,9 +23,7 @@ class Article extends React.Component {
   }
 
   handleLike = async (articleId) => {
-    let article = { ...this.state.article };
     const userId = getUserId();
-
     const { data: userLiked } = await UserAlreadyLiked(articleId, userId);
 
     if (userLiked) {
@@ -36,32 +31,17 @@ class Article extends React.Component {
         articleId,
         userId
       );
-      article = articleWithLikeRemoved;
-      return this.setState({ article, isLiked: false });
+      return this.setState({ article: articleWithLikeRemoved, isLiked: false });
     }
-    const { data } = await AddLikeArticle(articleId, userId);
-    if (!data) return;
-    this.saveLikedArticle(data);
+    const { data: article } = await AddLikeArticle(articleId, userId);
 
-    article = data;
-
-    this.setState({ article, isLiked: true });
+    if (!article) return;
+    this.setState({ article: article, isLiked: true });
   };
-
-  saveLikedArticle(article) {
-    const lastLike = article.likes;
-    storeUserLike(lastLike.at(-1));
-  }
-
-  userLiked(likes, userId) {
-    if (likes == null) return false;
-    return likes.some((x) => x.userIdLiked == userId);
-  }
 
   render() {
     const { title, author, content, publishDate, likesCount } =
       this.state.article;
-    const { article } = this.state;
     const { id } = this.props.match.params;
     return (
       <div className="col d-flex flex-column justify-content-center align-content-center">

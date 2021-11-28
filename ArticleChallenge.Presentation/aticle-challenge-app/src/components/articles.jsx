@@ -1,16 +1,7 @@
 import React from "react";
-import {
-  getAllArticles,
-  AddLikeArticle,
-  UserAlreadyLiked,
-  RemoveLikeArticle,
-} from "./../services/articlesService";
+import { getAllArticles } from "./../services/articlesService";
 import ArticleList from "./articleList";
-import {
-  storeUserLike,
-  storeUserId,
-  getUserId,
-} from "./../services/localStorageService";
+import { storeUserId, getUserId } from "./../services/localStorageService";
 class Articles extends React.Component {
   state = {
     articles: [],
@@ -18,7 +9,6 @@ class Articles extends React.Component {
 
   async componentDidMount() {
     const { data: articles } = await getAllArticles();
-    storeUserId();
     if (articles === null) return;
     this.setState({ articles });
   }
