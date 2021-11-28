@@ -15,7 +15,6 @@ const ArticleCard = ({ article, onLike, userId }) => {
         </h5>
         <p className="card-text">{`${content.toString().slice(0, 200)}...`}</p>
         <div className="d-flex align-items-center mb-2">
-          <i className="fa fa-heart fa-2x pl-0 pr-2"></i>
           {(likesCount === 0 && (
             <p className="h5 m-0">Este artigo não tem Likes</p>
           )) || <p className="h5 m-0">{likesCount} Likes</p>}

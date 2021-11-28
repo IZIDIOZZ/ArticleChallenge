@@ -64,40 +64,32 @@ class Article extends React.Component {
     const { article } = this.state;
     const { id } = this.props.match.params;
     return (
-      <React.Fragment>
-        {Object.keys(article).length > 0 ? (
-          <div className="col d-flex flex-column justify-content-center align-content-center">
-            <h2> {title}</h2>
-            <h6>
-              Written by <span className="text-capitalize"> {author}</span>
-            </h6>
-            <p>
-              {content} <br />
-              <small className="">
-                {new Date(Date.parse(publishDate)).toLocaleString()}
-              </small>
-            </p>
-            <div className="d-flex align-items-center mb-2">
-              <Like
-                isLiked={this.state.isLiked}
-                onLike={() => this.handleLike(id)}
-              />
-              {(likesCount === 0 && (
-                <p className="h5 m-0">Este artigo não tem Likes</p>
-              )) || <p className="h5 m-0">{likesCount}</p>}
-            </div>
-            <p>
-              <NavLink to="/" className="btn btn-primary">
-                Go Back to Articles
-              </NavLink>
-            </p>
-          </div>
-        ) : (
-          <div className="d-flex justify-content-center align-content-center">
-            <h1>Article Not Found</h1>
-          </div>
-        )}
-      </React.Fragment>
+      <div className="col d-flex flex-column justify-content-center align-content-center">
+        <h2> {title}</h2>
+        <h6>
+          Written by <span className="text-capitalize"> {author}</span>
+        </h6>
+        <p>
+          {content} <br />
+          <small className="">
+            {new Date(Date.parse(publishDate)).toLocaleString()}
+          </small>
+        </p>
+        <div className="d-flex align-items-center mb-2">
+          <Like
+            isLiked={this.state.isLiked}
+            onLike={() => this.handleLike(id)}
+          />
+          {(likesCount === 0 && (
+            <p className="h5 m-0">Este artigo não tem Likes</p>
+          )) || <p className="h5 m-0">{likesCount} Likes</p>}
+        </div>
+        <p>
+          <NavLink to="/" className="btn btn-primary">
+            Go Back to Articles
+          </NavLink>
+        </p>
+      </div>
     );
   }
 }
