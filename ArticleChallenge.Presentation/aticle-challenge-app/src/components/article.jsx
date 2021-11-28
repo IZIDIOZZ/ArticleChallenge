@@ -81,7 +81,7 @@ class Article extends React.Component {
             onLike={() => this.handleLike(id)}
           />
           {(likesCount === 0 && (
-            <p className="h5 m-0">Este artigo não tem Likes</p>
+            <p className="h5 m-0">This article has no Likes</p>
           )) || <p className="h5 m-0">{likesCount} Likes</p>}
         </div>
         <p>

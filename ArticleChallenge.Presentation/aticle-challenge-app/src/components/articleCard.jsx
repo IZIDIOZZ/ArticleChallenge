@@ -16,7 +16,7 @@ const ArticleCard = ({ article, onLike, userId }) => {
         <p className="card-text">{`${content.toString().slice(0, 200)}...`}</p>
         <div className="d-flex align-items-center mb-2">
           {(likesCount === 0 && (
-            <p className="h5 m-0">Este artigo não tem Likes</p>
+            <p className="h5 m-0">This article has no Likes</p>
           )) || <p className="h5 m-0">{likesCount} Likes</p>}
         </div>
         <NavLink to={`articles/${articleId}`} className="btn btn-primary">
@@ -24,7 +24,7 @@ const ArticleCard = ({ article, onLike, userId }) => {
         </NavLink>
       </div>
       <div className="card-footer text-muted">
-        Artigo publicado em:{" "}
+        Article published in:{" "}
         {new Date(Date.parse(publishDate)).toLocaleDateString()}
       </div>
     </div>
